@@ -46,13 +46,10 @@
 
 
     int main(){
-        
-        
-        
-        char Message[256] = "You have connceted";
         int s;
-        s = socket(AF_INET,SOCK_STREAM,0);
 
+        
+        s = socket(AF_INET,SOCK_STREAM,0);
         if(s < 0){
             perror("Socket creation failed");
             return 1;
@@ -60,14 +57,19 @@
         
 
         }
-        
+        int opt = 1;
+        if (setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0) {
+            perror("setsockopt failed");
+            exit(EXIT_FAILURE);
+        }
+
         struct sockaddr_in servAdd;
         servAdd.sin_family = AF_INET;
         servAdd.sin_port = htons(port);
         servAdd.sin_addr.s_addr = inet_addr("127.0.0.1");
         struct sockaddr_in ClientInfo;
         socklen_t cli_len = sizeof(ClientInfo);
-        char page[2000000]= "HHTP";
+        
 
         int e1= bind(s, (struct sockaddr *)&servAdd, sizeof(servAdd));
         if(e1<0){
