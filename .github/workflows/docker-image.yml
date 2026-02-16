@@ -1,0 +1,38 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: run test 
+      run: | 
+        chmod +x test.sh
+        ./test.sh
+    
+    
+    - name: Push to aws
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: ${{secrets.ECS_HOST}}
+        username: ${{secrets.ECS_USERNAME}}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+            cd /home/ubuntu/my-app
+            # Optional: pull latest code
+            git pull origin main
+            # Rebuild Docker image
+            docker build -t my-app:latest .
+            # Stop old container if exists
+            docker stop my-app || true
+            docker rm my-app || true
+            # Run new container
+            docker run -d --name my-app -p 8000:8000 my-app:latest
