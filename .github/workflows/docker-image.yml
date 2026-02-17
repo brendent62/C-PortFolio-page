@@ -17,7 +17,7 @@ jobs:
     - name: build and run docker container
       run: |
          docker build -t c-server:latest .
-         docker run -d -p 8000:8000 --name c-server c-server:latest
+         docker run -d -p 443:443 --name c-server c-server:latest
          sleep 5
 
     - name: Set up GCC
