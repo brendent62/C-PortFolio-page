@@ -45,7 +45,7 @@ jobs:
           port: 8000
         with:
           script_after: |
-            cd ~/workspace
+            cd  /my-app
             git fetch origin
             git reset --hard origin/main
             sudo docker build -t c-server . 
