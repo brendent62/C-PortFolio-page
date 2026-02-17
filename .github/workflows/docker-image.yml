@@ -51,5 +51,5 @@ jobs:
             sudo docker build -t c-server . 
             sudo docker stop $(docker ps -q) || true
             sudo docker rm $(docker ps -aq) || true
-            sudo docker run -d -p 80:8000 c-server
+            sudo docker run -d -p 8000:8000 c-server
             
