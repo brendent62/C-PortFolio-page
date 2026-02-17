@@ -6,6 +6,6 @@ COPY server.c ./
 
 RUN gcc server.c -o server
 
-EXPOSE 22556
+EXPOSE 8000
 
 CMD ["./server"]
