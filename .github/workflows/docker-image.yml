@@ -13,10 +13,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: run test 
-      run: | 
-        chmod +x test.sh
-        ./test.sh
+    
+    - name: build and run docker container
+      run: |
+        docker build -t http-server . 
+        docker run -d --name my-app -p 8000:8000 my-app:latest
+        sleep 5
+
     - name: Set up GCC
       uses: egor-tensin/setup-gcc@v2
       with:
@@ -27,25 +30,30 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y build-essential
-    - name: Run tests in Ubuntu container
-      run: |
-        docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace ubuntu:latest bash -c "apt update && apt install -y build-essential && ./test.sh"
+    - name: run test 
+      run: | 
+        chmod +x test.sh
+        ./test.sh
 
-
-    - name: Push to aws
-      uses: appleboy/ssh-action@v0.1.6
-      with:
-        host: ${{secrets.ECS_HOST}}
-        username: ${{secrets.ECS_USERNAME}}
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-            cd /home/ubuntu/my-app
-            # Optional: pull latest code
-            git pull origin main
-            # Rebuild Docker image
-            docker build -t my-app:latest .
-            # Stop old container if exists
-            docker stop my-app || true
-            docker rm my-app || true
-            # Run new container
-            docker run -d --name my-app -p 8000:8000 my-app:latest
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy to aws
+        uses: easingthemes/ssh-deploy@main
+        env:
+          REMOTE_HOST: ${{ secrets.EC2_HOST }}
+          REMOTE_USER: ${{ secrets.EC2_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_KEY }}
+          TARGET: ~/http/http/BasicPythonHTTPServer
+          port: 22
+        with:
+          script_after: |
+            cd ~/workspace
+            git fetch origin
+            git reset --hard origin/main
+            sudo docker build -t c-server . 
+            sudo docker stop $(docker ps -q) || true
+            sudo docker rm $(docker ps -aq) || true
+            sudo docker run -d -p 8000:8000 c-server
+            
