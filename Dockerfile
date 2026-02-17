@@ -7,7 +7,7 @@ COPY pages ./pages
 
 RUN gcc server.c -o server
 
-EXPOSE 443
+EXPOSE 8000
 
 
 
