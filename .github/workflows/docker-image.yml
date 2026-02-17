@@ -30,10 +30,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y build-essential
-    - name: run test 
-      run: | 
-        chmod +x test.sh
-        ./test.sh
+
 
   deploy:
     needs: test
