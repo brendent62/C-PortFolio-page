@@ -4,7 +4,7 @@
     #include <sys/socket.h>
     #include <netinet/in.h>
     #include <unistd.h>
-    #define port 22556
+    #define port 8000
     #include <arpa/inet.h>
     #include <string.h>
 
@@ -57,16 +57,12 @@
         
 
         }
-        int opt = 1;
-        if (setsockopt(s, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0) {
-            perror("setsockopt failed");
-            exit(EXIT_FAILURE);
-        }
+
 
         struct sockaddr_in servAdd;
         servAdd.sin_family = AF_INET;
         servAdd.sin_port = htons(port);
-        servAdd.sin_addr.s_addr = inet_addr("127.0.0.1");
+        servAdd.sin_addr.s_addr = INADDR_ANY;
         struct sockaddr_in ClientInfo;
         socklen_t cli_len = sizeof(ClientInfo);
         
