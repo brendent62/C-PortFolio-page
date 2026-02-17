@@ -17,7 +17,7 @@ jobs:
     - name: build and run docker container
       run: |
          docker build -t c-server:latest .
-         docker run -d -p 443:443 --name c-server c-server:latest
+         docker run -d -p 8000:8000 --name c-server c-server:latest
          sleep 5
 
     - name: Set up GCC
@@ -51,5 +51,5 @@ jobs:
             sudo docker build -t c-server . 
             sudo docker stop $(docker ps -q) || true
             sudo docker rm $(docker ps -aq) || true
-            sudo docker run -d -p 443:443 c-server
+            sudo docker run -d -p 8000:8000 c-server
             
