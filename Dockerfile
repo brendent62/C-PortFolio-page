@@ -1,4 +1,4 @@
-FROM gcc:alpine
+FROM gcc:12.2.0-alpine
 
 WORKDIR /app
 
