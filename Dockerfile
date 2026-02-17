@@ -1,4 +1,4 @@
-FROM gcc:12.2.0-alpine
+FROM frolvlad/alpine-gcc:latest
 
 WORKDIR /app
 
