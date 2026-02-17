@@ -45,8 +45,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.EC2_HOST }}
           REMOTE_USER: ${{ secrets.EC2_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.EC2_KEY }}
-          TARGET: ~/http/http/BasicPythonHTTPServer
-          port: 22
+          port: 8000
         with:
           script_after: |
             cd ~/workspace
