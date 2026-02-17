@@ -42,7 +42,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.EC2_HOST }}
           REMOTE_USER: ${{ secrets.EC2_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.EC2_KEY }}
-          port: 8000
+          port: 443
         with:
           script_after: |
             cd  ~/my-app
@@ -51,5 +51,5 @@ jobs:
             sudo docker build -t c-server . 
             sudo docker stop $(docker ps -q) || true
             sudo docker rm $(docker ps -aq) || true
-            sudo docker run -d -p 8000:8000 c-server
+            sudo docker run -d -p 443:443 c-server
             
