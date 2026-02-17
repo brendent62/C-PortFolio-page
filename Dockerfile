@@ -8,4 +8,4 @@ RUN gcc server.c -o server
 
 EXPOSE 22556
 
-GMD ["./server""]
+CMD ["./server""]
