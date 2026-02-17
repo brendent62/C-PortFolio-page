@@ -4,7 +4,7 @@
     #include <sys/socket.h>
     #include <netinet/in.h>
     #include <unistd.h>
-    #define port 8000
+    #define port 443
     #include <arpa/inet.h>
     #include <string.h>
 
