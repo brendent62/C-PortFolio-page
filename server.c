@@ -25,6 +25,11 @@
         fread(html,1,fsize,f);
         html[fsize] = 0;
         fclose(f);
+        const char *ctype = "text/plain";
+        if (strstr(fpath, ".css")) ctype = "text/css";
+        else if (strstr(fpath, ".js")) ctype = "application/javascript";
+         if (strstr(fpath, ".html")) ctype = "text/html";
+
         char header[512];
 
 
