@@ -1,62 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Projects | Your Name</title>
-<link rel="stylesheet" href="css/style.css">
-</head>
+    <meta charset="UTF-8">
+    <title>Brenden Turner | Projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; margin:0; background:#f4f6f8; color:#333; }
+        header { background:#1e1e2f; color:white; padding:20px; text-align:center; }
+        nav { display:flex; justify-content:center; background:#2a2a40; }
+        nav a { color:white; padding:15px 25px; text-decoration:none; }
+        nav a.active, nav a:hover { background:#4c4cff; }
+        main { max-width:900px; margin:30px auto; padding:20px; background:white; border-radius:8px;
+               box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+        .project { border-left:4px solid #4c4cff; padding-left:15px; margin-bottom:20px; }
+        footer { text-align:center; padding:15px; color:#777; }
+    </style>
+</head>
 <body>
 
+<header>
+    <h1>Brenden Turner</h1>
+    <p>Computer Science Student | Aspiring ML Engineer</p>
+</header>
+
 <nav>
-<div class="logo">YourName.dev</div>
-<ul>
-<li><a href="/">Home</a></li>
-<li><a href="/about.html">About</a></li>
-<li><a href="/projects.html">Projects</a></li>
-<li><a href="/resume.html">Resume</a></li>
-<li><a href="/contact.html">Contact</a></li>
-</ul>
+    <a href="/">Home</a>
+    <a class="active" href="/projects">Projects</a>
+    <a href="/resume">Resume</a>
 </nav>
 
-<section class="page">
+<main>
+    <h2>Projects</h2>
 
-<h1>Projects</h1>
+    <div class="project">
+        <h3>Stock Tracker</h3>
+        <p>
+            Java + Django app that tracks stocks and filters them by
+            indicators like price movement and volume.
+        </p>
+    </div>
 
-<div class="card-container">
+    <div class="project">
+        <h3>Text Editor in C</h3>
+        <p>
+            Built a basic text editor from scratch using C,
+            implementing file I/O and keyboard handling.
+        </p>
+    </div>
 
-<div class="card">
+    <div class="project">
+        <h3>Machine Learning Playground</h3>
+        <p>
+            Implemented linear regression and k-NN from scratch
+            to understand ML fundamentals.
+        </p>
+    </div>
+</main>
 
-<h2>HTTP C socket website - This Website</h2>
-
-<p>
-
-Designed and implemented a production-grade HTTP web server from scratch in C using low-level POSIX socket programming, handling TCP connections, manual HTTP request parsing, routing, and static file delivery without external frameworks. Deployed the server on a cloud VM using Amazon Web Services EC2 and integrated Cloudflare as a reverse proxy for HTTPS encryption, origin IP protection, and DDoS mitigation. Implemented a full CI/CD pipeline using GitHub and GitHub Actions to automatically build, test, and deploy updates to both staging and live production environments, enabling rapid and reliable iteration. Containerized the application with Docker and configured Linux networking, DNS, and firewall rules to securely expose services while preventing direct origin access. Monitored real-world traffic and exploit attempts and hardened the system by restricting access paths and mitigating automated vulnerability scans.
-
-
-
-</p>
-<p><strong>Tech:</strong><br> C, POSIX Sockets, Linux, TCP/IP, HTTP, AWS EC2, Cloudflare, Docker, GitHub Actions, CI/CD, Networking, Systems Programming, Security Hardening</p>
-
-<a href="https://github.com/brendent62/C-PortFolio-page">GitHub</a>
-
-</div>
-
-<div class="card">
-
-<h2>Project Name</h2>
-
-<p>Description placeholder</p>
-
-<p><strong>Tech:</strong> ______</p>
-
-<a href="#">GitHub</a>
-<a href="#">Live Demo</a>
-
-</div>
-
-</div>
-
-</section>
+<footer>
+    © 2026 Brenden Turner
+</footer>
 
 </body>
 </html>
