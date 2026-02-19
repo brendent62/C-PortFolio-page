@@ -413,3 +413,117 @@ nav a:hover {
     font-weight: 600;
     color: #38bdf8;
 }
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+
+    /* Navbar adjustments */
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav a {
+        width: 100%;
+        display: block;
+        padding: 8px 0;
+    }
+
+    /* Hero adjustments */
+    .hero {
+        padding: 100px 15px;
+    }
+
+    .hero h1 {
+        font-size: 36px; /* smaller on mobile */
+    }
+
+    .hero h2 {
+        font-size: 20px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .btn, .btn-outline {
+        width: 80%; /* make buttons full width but with margin */
+        text-align: center;
+    }
+
+    /* Page content adjustments */
+    .page {
+        padding: 50px 15px;
+    }
+
+    .page h1 {
+        font-size: 32px;
+    }
+
+    .page h2 {
+        font-size: 24px;
+    }
+
+    .about-intro, .intro-text {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    /* Skills list adjustments */
+    .skills-list {
+        gap: 10px;
+    }
+
+    .skills-list li {
+        font-size: 16px;
+        padding: 6px 12px;
+    }
+
+    /* Card container */
+    .card-container {
+        grid-template-columns: 1fr; /* stack cards vertically on mobile */
+        gap: 20px;
+    }
+}
+
+/* Very small devices */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero h2 {
+        font-size: 18px;
+    }
+
+    .btn, .btn-outline {
+        width: 90%;
+    }
+
+    .page h1 {
+        font-size: 28px;
+    }
+
+    .page h2 {
+        font-size: 20px;
+    }
+
+    .about-intro, .intro-text {
+        font-size: 15px;
+    }
+}
