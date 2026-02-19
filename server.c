@@ -8,11 +8,14 @@
     #include <arpa/inet.h>
     #include <string.h>
 
-    void file_open(int c, char FilePath[10]){
+    void file_open(int c, const char *FilePath){
         FILE *f;
+        if (FilePath[0] == '/') FilePath++;
         char fpath[256];
+        
         sprintf(fpath, "./pages/%s" ,FilePath);
         f = fopen(fpath, "rb");
+        printf("Trying to open: '%s' (len=%zu)\n", fpath, strlen(fpath));
         if(!f){
             perror("error opening file");
             return;
@@ -28,7 +31,6 @@
         
         const char *ctype = "text/plain";
         if (strstr(fpath, ".css")) ctype = "text/css";
-        else if (strstr(fpath, ".js")) ctype = "application/javascript";
         else if (strstr(fpath, ".html")) ctype = "text/html";
 
         char header[512];
@@ -120,7 +122,7 @@
                     file_open(c, "contact.html");
                 }
                 else if(strcmp(path, "/css/style.css")==0){
-                    fil_open(c, "style.css");
+                    file_open(c, "css/style.css");
                 }
 
             }
