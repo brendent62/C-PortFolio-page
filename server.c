@@ -100,13 +100,19 @@
                 printf("Method %s\n", method);
                 printf("path %s\n", path);
                 if (strcmp(path, "/") == 0) {
-                    file_open(c, "home.html");
+                    file_open(c, "index.html");
                     }
                 else if (strcmp(path, "/projects")==0){
                     file_open(c, "projects.html");
                 }
                 else if (strcmp(path, "/resume") ==0){
                     file_open(c, "resume.html");
+                }
+                else if (strcmp(path, "/about")==0){
+                    file_open(c, "about.html");
+                }
+                else if (strcmp(path, "/contact") ==0){
+                    file_open(c, "contact.html");
                 }
 
             }
