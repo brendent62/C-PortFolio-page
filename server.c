@@ -12,7 +12,7 @@
         FILE *f;
         char fpath[256];
         sprintf(fpath, "./pages/%s" ,FilePath);
-        f = fopen(fpath, "r");
+        f = fopen(fpath, "rb");
         if(!f){
             perror("error opening file");
             return;
@@ -25,21 +25,21 @@
         fread(html,1,fsize,f);
         html[fsize] = 0;
         fclose(f);
+        
         const char *ctype = "text/plain";
         if (strstr(fpath, ".css")) ctype = "text/css";
         else if (strstr(fpath, ".js")) ctype = "application/javascript";
-         if (strstr(fpath, ".html")) ctype = "text/html";
+        else if (strstr(fpath, ".html")) ctype = "text/html";
 
         char header[512];
 
 
         sprintf(header,
-                "HTTP/1.1 200 OK\r\n"
-                "Content-Type: text/html\r\n"
-                "Content-Length: %ld\r\n"
-                "Connection: close\r\n"
-                "\r\n",
-                fsize);
+            "HTTP/1.1 200 OK\r\n"
+            "Content-Type: %s\r\n"
+            "Content-Length: %ld\r\n"
+            "Connection: close\r\n\r\n",
+            ctype, fsize);
 
         send(c, header, strlen(header), 0);
         send(c, html, fsize, 0);
