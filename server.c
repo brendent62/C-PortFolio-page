@@ -4,23 +4,30 @@
     #include <sys/socket.h>
     #include <netinet/in.h>
     #include <unistd.h>
-    #define port 8000
     #include <arpa/inet.h>
     #include <string.h>
 
+    #define port 8000
+
+
+
+    /*this function handles the page opening*/
     void file_open(int c, char FilePath[10]){
         FILE *f;
+
         char fpath[256];
         sprintf(fpath, "./pages/%s" ,FilePath);
+
         f = fopen(fpath, "r");
+
         if(!f){
             perror("error opening file");
             return;
         }
+
         fseek(f,0,SEEK_END);
         long fsize = ftell(f);
         fseek(f,0,SEEK_SET);
-
         char *html = malloc(fsize + 1);
         fread(html,1,fsize,f);
         html[fsize] = 0;
@@ -47,9 +54,9 @@
 
     int main(){
         int s;
-
-        
         s = socket(AF_INET,SOCK_STREAM,0);
+
+
         if(s < 0){
             perror("Socket creation failed");
             return 1;
@@ -100,7 +107,7 @@
                 printf("Method %s\n", method);
                 printf("path %s\n", path);
                 if (strcmp(path, "/") == 0) {
-                    file_open(c, "home.html");
+                    file_open(c, "index.html");
                     }
                 else if (strcmp(path, "/projects")==0){
                     file_open(c, "projects.html");
@@ -108,6 +115,14 @@
                 else if (strcmp(path, "/resume") ==0){
                     file_open(c, "resume.html");
                 }
+                else if (strcmp(path, "/about")==0){
+                    file_open(c, "about.html");
+                }
+                else if (strcmp(path, "/contact") ==0){
+                    file_open(c, "contact.html");
+                }
+                
+
 
             }
  
