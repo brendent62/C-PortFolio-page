@@ -119,6 +119,9 @@
                 else if (strcmp(path, "/contact") ==0){
                     file_open(c, "contact.html");
                 }
+                else if(strcmp(path, "/css/style.css")==0){
+                    fil_open(c, "style.css");
+                }
 
             }
  
